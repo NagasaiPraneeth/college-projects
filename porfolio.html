@@ -1,75 +1,404 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nagasai Praneeth Thipparthi - Portfolio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --gray-color: #6c757d;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-color);
+            background-color: #f8f9fa;
+            line-height: 1.7;
+        }
+        
+        /* Header Styles */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 0 70px;
+            border-radius: 0 0 50px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 3px;
+            background: var(--accent-color);
+            margin-top: 5px;
+        }
+        
+        /* Card Styles */
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-title {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            border: none;
+        }
+        
+        /* Project Cards */
+        .project-card {
+            height: 100%;
+        }
+        
+        .project-card .card-body {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-links {
+            margin-top: auto;
+        }
+        
+        /* Skills */
+        .skill-badge {
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 30px;
+            padding: 5px 15px;
+            margin: 5px;
+            display: inline-block;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: scale(1.05);
+            background-color: var(--primary-color);
+        }
+        
+        /* Contact Section */
+        .contact-info i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background-color: var(--secondary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 30px;
+            padding: 8px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 30px;
+            padding: 8px 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Timeline for Work Experience */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 70px 0 50px;
+            }
+            
+            .profile-pic {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .section-title:after {
+                width: 70%;
+            }
+            
+            .timeline {
+                padding-left: 20px;
+            }
+            
+            .timeline-item:before {
+                left: -28px;
+                width: 12px;
+                height: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Nagasai Praneeth Thipparthi</h1>
-    <p>Phone: 6303895820</p>
-    <p>Email: nagasaipraneeth5@gmail.com</p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/Nagasai">linkedin.com/in/Nagasai</a></p>
-    <p>GitHub: <a href="https://github.com/Nagasai">github.com/Nagasai</a></p>
-    <p>LeetCode: <a href="https://leetcode.com/Nagasai">leetcode.com/Nagasai</a></p>
-    
-    <h2>Education</h2>
-    <p><strong>Keshav Memorial Institute of Technology</strong>, Hyderabad, Telangana, India</p>
-    <p>Computer Science | October 2022 - Current</p>
-    <p><strong>Vidyamandir Classes</strong> | Secondary Education | Oct 2020 - May 2022</p>
-    
-    <h2>Technical Skills</h2>
-    <p><strong>Programming Languages:</strong> C, Python, C++, Java, JavaScript</p>
-    <p><strong>Libraries and Tools:</strong> Tailwind CSS, React, Express, MongoDB, Github, Postman, Vercel, Numpy, Pandas, Google Colab, Langchain, Hugging Face, Gemini AI Studio</p>
-    <p><strong>ML Architectures:</strong> Retrieval-Augmented Generation (RAG), Language Models (LLMs), Fine-Tuning, Agentic Workflow</p>
-    
-    <h2>Projects</h2>
-    <h3>Schedio</h3>
-    <ul>
-        <li>Developed a dynamic MERN stack platform for students to showcase and learn from projects.</li>
-        <li>Managed a complex folder structure for project files with seamless upload interactions.</li>
-        <li>Implemented large file storage using GridFS and an AI code explainer feature for better project understanding.</li>
-        <li>Launched with an initial user base of 50,000+ college listings and plans to collaborate with institutions.</li>
-    </ul>
-    <p><strong>Tech Stack:</strong> MERN, Gemini AI Studio, JavaScript, HTML, CSS, Git</p>
-    <p><a href="#">GitHub</a> | <a href="#">Website</a></p>
-    
-    <h3>Saanjh Sahayak</h3>
-    <ul>
-        <li>Developed a full-stack platform for elderly care, enabling health monitoring and seamless doctor-patient interactions.</li>
-        <li>Implemented LLM models with Retrieval-Augmented Generation (RAG) for health report uploads and comparative analysis.</li>
-        <li>Designed features for analyzing health patterns and medical imaging, with plans to integrate with hospitals.</li>
-        <li>Business model targets partnerships with healthcare providers for personalized health solutions.</li>
-    </ul>
-    <p><strong>Tech Stack:</strong> Tailwind CSS, MERN, RAG, LLM Models, JavaScript, Git</p>
-    <p><a href="#">GitHub</a> | <a href="#">Website</a></p>
-    
-    <h3>WealthWise</h3>
-    <ul>
-        <li>Developing a financial advisory platform with an expense tracker and analyzer for personalized investment suggestions.</li>
-        <li>Integrates real data from stocks, mutual funds, gold, and real estate, providing real-time updates to users.</li>
-        <li>Utilizes RAG, fine-tuning, and AI agents to enhance decision-making and user experience.</li>
-        <li>Manages user profiles and ensures seamless interaction with investment data.</li>
-    </ul>
-    <p><strong>Tech Stack:</strong> RAG, Fine-tuning, MERN, AI Agents</p>
-    <p><a href="#">GitHub</a> | <a href="#">Website</a></p>
-    
-    <h2>Work Experience</h2>
-    <h3>GSSoC Contributor</h3>
-    <p><strong>Girl Script Summer of Code</strong> | October 2024 - Current</p>
-    <ul>
-        <li>Contributed to open-source MERN stack projects, enhancing functionality and user experience.</li>
-        <li>Collaborated with a diverse team to implement features and fix bugs, fostering a strong understanding of community-driven development.</li>
-    </ul>
-    
-    <h2>Achievements</h2>
-    <ul>
-        <li>Secured second place in the national-level Generative AI Hackathon held in Mumbai for the Saanjh Sahayak project.</li>
-        <li>Finalist in the Generative AI Hackathon conducted by CBIT Hyderabad in collaboration with Microsoft.</li>
-    </ul>
-    
-    <h2>Certifications</h2>
-    <ul>
-        <li>Certified in Data Structures and Algorithms from CodeHelp.in | <a href="#">View Certificate</a></li>
-        <li>Certified in Postman API as student expert from postman.com | <a href="#">View Certificate</a></li>
-    </ul>
-</body>
-</html>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: var(--primary-color);">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Nagasai</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#achievements">Achievements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center" id="about">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <img src="./nagasai.jpg" alt="Nagasai Praneeth Thipparthi" class="profile-pic">
+                    <h1 class="display-4 fw-bold mb-3">Nagasai Praneeth Thipparthi</h1>
+                    <h3 class="mb-4">Computer Science Student & Developer</h3>
+                    <p class="lead mb-5">Passionate about creating innovative solutions using MERN stack and AI technologies.</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="#contact" class="btn btn-light me-3">Contact Me</a>
+                        <a href="#projects" class="btn btn-outline-light">View Projects</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="bg-white" id="education">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Education</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h4 class="card-title">Computer Science</h4>
+                                    <h5>Keshav Memorial Institute of Technology</h5>
+                                    <p class="text-muted">Hyderabad, Telangana, India</p>
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    <p class="badge bg-primary">October 2022 - Current</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h4 class="card-title">Secondary Education</h4>
+                                    <h5>Vidyamandir Classes</h5>
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    <p class="badge bg-primary">Oct 2020 - May 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Technical Skills</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">Programming Languages</h5>
+                            <div class="mb-4">
+                                <span class="skill-badge">C</span>
+                                <span class="skill-badge">Python</span>
+                                <span class="skill-badge">C++</span>
+                                <span class="skill-badge">Java</span>
+                                <span class="skill-badge">JavaScript</span>
+                            </div>
+                            
+                            <h5 class="card-title mb-4">Libraries and Tools</h5>
+                            <div class="mb-4">
+                                <span class="skill-badge">Tailwind CSS</span>
+                                <span class="skill-badge">React</span>
+                                <span class="skill-badge">Express</span>
+                                <span class="skill-badge">MongoDB</span>
+                                <span class="skill-badge">Github</span>
+                                <span class="skill-badge">Postman</span>
+                                <span class="skill-badge">Vercel</span>
+                                <span class="skill-badge">Numpy</span>
+                                <span class="skill-badge">Pandas</span>
+                                <span class="skill-badge">Google Colab</span>
+                                <span class="skill-badge">Langchain</span>
+                                <span class="skill-badge">Hugging Face</span>
+                                <span class="skill-badge">Gemini AI Studio</span>
+                            </div>
+                            
+                            <h5 class="card-title mb-4">ML Architectures</h5>
+                            <div>
+                                <span class="skill-badge">Retrieval-Augmented Generation (RAG)</span>
+                                <span class="skill-badge">Language Models (LLMs)</span>
+                                <span class="skill-badge">Fine-Tuning</span>
+                                <span class="skill-badge">Agentic Workflow</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
